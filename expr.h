@@ -37,6 +37,7 @@ typedef struct Operator {
 // expression evaluation methods
 extern RC valueEquals (Value *left, Value *right, Value *result);
 extern RC valueSmaller (Value *left, Value *right, Value *result);
+extern RC valueCmp (Value *left, Value *right, int *result);
 extern RC boolNot (Value *input, Value *result);
 extern RC boolAnd (Value *left, Value *right, Value *result);
 extern RC boolOr (Value *left, Value *right, Value *result);

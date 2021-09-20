@@ -59,6 +59,28 @@ valueSmaller (Value *left, Value *right, Value *result)
   return RC_OK;
 }
 
+RC valueCmp (Value *left, Value *right, int *result){
+	if(left->dt != right->dt)
+		THROW(RC_RM_COMPARE_VALUE_OF_DIFFERENT_DATATYPE, "equality comparison only supported for values of the same datatype");
+
+	switch(left->dt) {
+	case DT_INT:
+	*result = (left->v.intV > right->v.intV) - (left->v.intV < right->v.intV);
+	break;
+	case DT_FLOAT:
+	*result = (left->v.floatV > right->v.floatV) - (left->v.floatV < right->v.floatV);
+	break;
+	case DT_BOOL:
+	*result = (left->v.boolV > right->v.boolV) - (left->v.boolV < right->v.boolV);
+	break;
+	case DT_STRING:
+	*result = strcmp(left->v.stringV, right->v.stringV);
+	break;
+	}
+
+	return RC_OK;
+}
+
 RC 
 boolNot (Value *input, Value *result)
 {

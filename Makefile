@@ -1,9 +1,11 @@
-all: test_assign3_1
+all: test_assign4_1
 
-test_assign3_1: test_assign3_1.c buffer_mgr.o dberror.o buffer_mgr_stat.o storage_mgr.o record_mgr.o \
+test_assign4_1: test_assign4_1.c buffer_mgr.o dberror.o buffer_mgr_stat.o storage_mgr.o record_mgr.o btree_mgr.o\
 				expr.o rm_serializer.o
-	gcc -g -Werror -Wall -o test_assign3_1 test_assign3_1.c buffer_mgr.o \
-	dberror.o buffer_mgr_stat.o storage_mgr.o record_mgr.o expr.o rm_serializer.o
+	gcc -g -Werror -Wall -o test_assign4_1 test_assign4_1.c buffer_mgr.o \
+	dberror.o buffer_mgr_stat.o storage_mgr.o record_mgr.o btree_mgr.o expr.o rm_serializer.o
+btree_mgr.o: btree_mgr.c
+	gcc -g -Werror -Wall -c btree_mgr.c
 record_mgr.o: record_mgr.c
 	gcc -g -Werror -Wall -c record_mgr.c
 expr.o: expr.c
@@ -19,4 +21,4 @@ storage_mgr.o: storage_mgr.c dberror.o
 dberror.o: dberror.c
 	gcc -g -Werror -Wall -c dberror.c
 clean:
-	rm *.o test_assign3_1
+	rm *.o test_assign4_1
