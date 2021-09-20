@@ -29,7 +29,7 @@ int bumpToHead(IntList *il,ListEntry *le){//Append element at the tail and retur
 		case 1:il->tail->nextpoint=le;
 		case 2:le->prevpoint=il->tail;
 		case 3:il->tail=le;
-			b = 0; }
+			b = 0;}
 	return le->index;
 }
 
@@ -127,7 +127,7 @@ RC initPFHandle(BM_PFHandle *pointer, const char *const pageFileName, int pagenu
 					case 2: le->nextpoint=le+1; break;
 				}
 			} break;
-		case 3: pointer->rep->dataStruct=malloc(pagenumbers*sizeof(bool)); break;
+		case 3: pointer->rep->dataStruct=calloc(pagenumbers,sizeof(bool)); break;
 	}
 	printf("Initialie PFHandle scuueed!");
 	return RC_OK;	
@@ -472,7 +472,7 @@ int replace(BM_BufferPool *bm)
 			{bool *clock = pfh->rep->dataStruct;
 			long int time;
 			
-			while (pfh->pageFrame[pfh->rep->cur].fixCount != 0 || clock[pfh->rep->cur] == 1)
+			while (pfh->pageFrame[pfh->rep->cur].fixCount != 0 || clock[pfh->rep->cur] == true)
 			{	int cursize = pfh->rep->cur;
 				time = 0;						  
 				clock[cursize] = time; //make sure we can tell which is not recently used
